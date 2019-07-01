@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    <title>All Lists | Pakistani Stage Dramas</title> --}}
+    <title>All Lists | Pakistani Stage Dramas</title>
 @endsection
 @section('content')
     <!-- tables -->

@@ -19,9 +19,16 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <style>
+        .hidden
+        {
+            display: none;
+        }
+    </style>
     @yield('css')
 </head>
 <body>
+    @include('includes.messages')
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">

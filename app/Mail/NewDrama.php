@@ -2,26 +2,26 @@
 
 namespace App\Mail;
 
+use App\Video;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Notification extends Mailable
+class NewDrama extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $title;
-    public $email;
+    public $video;
+    public $actors;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($title, $email)
+    public function __construct(Video $video)
     {
-        $this->title=$title;
-        $this->email=$email;
+        $this->video=$video;
+        $this->actors=$video->actors;
     }
 
     /**
@@ -31,6 +31,6 @@ class Notification extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.notification');
+        return $this->markdown('emails.newdrama');
     }
 }

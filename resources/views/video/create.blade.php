@@ -40,6 +40,19 @@
                                 </div>
                             </div>
 
+                            <div class="form-group row">
+                                <label for="sendemail" class="col-md-4 col-form-label text-md-right">{{ __('Send Email') }}</label>
+
+                                <div class="col-md-6">
+                                    <input type="checkbox" name="sendemail" id="sendemail" class="form-control @error('name') is-invalid @enderror">
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             {{-- Video Link --}}
                             <div class="form-group row">
                                 <label for="video_link"

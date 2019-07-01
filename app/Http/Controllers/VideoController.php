@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Actor;
+use App\Email;
 use App\Video;
+use App\Mail\NewDrama;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class VideoController extends Controller
 {
@@ -75,6 +78,13 @@ class VideoController extends Controller
         $actors=$request->input('actors');
         foreach ($actors as $actor) {
             DB::insert( 'insert into videos_actors (video_id, actor_id) values (?, ?)', [$video->id, $actor]);
+        }
+        if($request->input('sendemail'))
+        {
+            $emails=Email::pluck('email')->toArray();
+            foreach ($emails as $email) {
+                Mail::to($email)->send(new NewDrama($video));
+            }
         }
         return redirect()->back()->withErrors('Your Entry is success fully entered.');
     }
