@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('mail/test', function () {
+    $arrays=array();
+    $dates=App\Video::pluck('release_date')->toArray();
+    if($dates)
+    {
+        foreach ($dates as $date) {
+            $arrays[]= date('Y', strtotime($date));
+        }
+    }
+
+    dd(array_unique($arrays));
+    // dd(date('Y', strtotime($date)));
 });
 
 Route::get('/', 'MainpageController@index')->name('main.index');
@@ -38,3 +49,11 @@ Route::post('email', 'EmailController@store')->name('email.store');
 
 Route::resource('video', 'VideoController');
 Route::resource('actor', 'ActorController');
+
+
+// SITEMAPS
+Route::get('/sitemap.xml', 'SitemapController@index')->name('sitemap.index');
+Route::get('/sitemap.xml/actors', 'SitemapController@actors')->name('sitemap.actors');
+Route::get('/sitemap.xml/navigation', 'SitemapController@navigation')->name('sitemap.navigation');
+Route::get('/sitemap.xml/videos', 'SitemapController@videos')->name('sitemap.videos');
+Route::get('/sitemap.xml/years', 'SitemapController@years')->name('sitemap.years');

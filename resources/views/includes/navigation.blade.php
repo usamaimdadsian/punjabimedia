@@ -89,7 +89,7 @@
                                     <div class="clearfix"></div>
                                 </li>
                             </ul>
-                        </li> 
+                        </li>
                         <li class="{{ request()->is('atoz')? 'active':'' }}"><a href="{{route('main.atoz')}}">A - z list</a></li>
                         <li class="{{ request()->is('search/mostWatched/*')? 'active':'' }}"><a href="{{route('main.specified',['name'=>'mostWatched','value'=>'stageDramas'])}}">Most Watched</a></li>
                         <li class="{{ request()->is('search/topRated/*')? 'active':'' }}"><a href="{{route('main.specified',['name'=>'topRated','value'=>'stageDramas'])}}">Top Rated</a></li>
