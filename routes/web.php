@@ -14,16 +14,20 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('mail/test', function () {
-    $arrays=array();
-    $dates=App\Video::pluck('release_date')->toArray();
-    if($dates)
-    {
-        foreach ($dates as $date) {
-            $arrays[]= date('Y', strtotime($date));
-        }
-    }
 
-    dd(array_unique($arrays));
+    function checkedIt($id, $selected_actors)
+    {
+        foreach ($selected_actors as $actor) {
+            if ($actor->actor_id == $id) {
+                return true;
+            }
+        }
+        return false;
+    }
+    $selected_actors = DB::select('select * from videos_actors where video_id = ?', [1]);
+    // $selected_actors=App\VideosActors::where('video_id',1)->get();
+    // dd($selected_actors);
+    dd(checkedIt(1,$selected_actors));
     // dd(date('Y', strtotime($date)));
 });
 

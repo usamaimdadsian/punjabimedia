@@ -13,7 +13,7 @@
     function checkedIt($id,$selected_actors)
     {
         foreach ($selected_actors as $actor) {
-            if($actor->id==$id)
+            if($actor->actor_id==$id)
             {
                 return true;
             }
