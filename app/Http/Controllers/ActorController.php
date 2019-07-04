@@ -100,7 +100,9 @@ class ActorController extends Controller
         if (Auth::user()->Authority == 'common') {
             return redirect()->route('main.index')->with('message', 'Successful!');
         }
-        //
+        $actor->name=$request->input('name');
+        $actor->update();
+        return redirect()->route('actor.index')->with('message','Actor Updated');
     }
 
     /**
