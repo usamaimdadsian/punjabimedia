@@ -154,58 +154,6 @@ class VideoController extends Controller
      */
     public function update(Request $request, Video $video)
     {
-        // dd($request->input('actors'));
-        // $videos_actors=VideosActors::where('video_id',$video->id);
-        $videos_actors=VideosActors::where('video_id',1)->get();
-        // dd($videos_actors[0]);
-        $actors = $request->input('actors');
-        if( sizeof($actors)== $videos_actors->count())
-        {
-            for($i=0; $i<sizeof($actors); $i++)
-            {
-                $vid_act=$videos_actors[$i];
-                $vid_act->actor_id=$actors[$i];
-                $vid_act->update();
-            }
-        }
-        else {
-            if( $videos_actors->count() > sizeof($actors))
-            {
-                $diff= $videos_actors->count()- sizeof($actors);
-                for($i=0; $i<$diff; $i++)
-                {
-                    $vid_act = $videos_actors[$i];
-                    $vid_act->delete();
-                }
-                $videos_actors = VideosActors::where('video_id', 1)->get();
-                for ($i = 0; $i < sizeof($actors); $i++) {
-                    $vid_act = $videos_actors[$i];
-                    $vid_act->actor_id = $actors[$i];
-                    $vid_act->update();
-                }
-            }
-            else{
-                // $diff = sizeof($actors) - $videos_actors->count();
-                for ($i = 0; $i < $videos_actors->count(); $i++) {
-                    $vid_act = $videos_actors[$i];
-                    $vid_act->actor_id = $actors[$i];
-                    $vid_act->update();
-                }
-                for($i= ($videos_actors->count()); $i< sizeof($actors); $i++)
-                {
-                    $vid_act=new VideosActors;
-                    $vid_act->actor_id=$actors[$i];
-                    $vid_act->video_id=1;
-                    $vid_act->save();
-                }
-            }
-        }
-        // dd($videos_actors->count());
-        dd(sizeof($actors));
-        foreach ($actors as $actor) {
-            DB::update('update videos_actors set actor_id = ? where video_id = ?', [$actor, $video->id]);
-        }
-        dd($actors = $request->input('actors'));
         if (Auth::user()->Authority == 'common') {
             return redirect()->route('main.index')->with('message', 'Successful!');
         }
@@ -228,9 +176,7 @@ class VideoController extends Controller
         $video->video_page_link = $page_link;
         $video->update();
         $actors = $request->input('actors');
-        foreach ($actors as $actor) {
-            DB::update('update videos_actors set actor_id = ? where video_id = ?', [$actor,$video->id]);
-        }
+        VideosActors::updateActors($video->id, $actors);
         return redirect()->back()->withErrors('Your Entry is success fully entered.');
     }
 
