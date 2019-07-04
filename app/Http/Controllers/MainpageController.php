@@ -14,12 +14,13 @@ class MainpageController extends Controller
 {
     public function index()
     {
+        $videos_latest_banner = Video::videosWithRatings(Video::latest()->take(6)->get());
         $videos_latest = Video:: videosWithRatings( Video::latest()->take(10)->get());
         //  Variables to use in general movie sections
         $latest_videos_g = Video::videosWithRatings( Video::latest()->take(12)->get());
         $most_viewed_videos_g=  Video::videosWithRatings(Video::orderBy('views','desc')->take(12)->get());
         $top_rated_videos_g= Video::videosTopRated(12);
-        return view('index', compact( 'videos_latest','latest_videos_g', 'most_viewed_videos_g', 'top_rated_videos_g'));
+        return view('index', compact( 'videos_latest_banner','videos_latest','latest_videos_g', 'most_viewed_videos_g', 'top_rated_videos_g'));
     }
 
     public function specified($name,$value)
