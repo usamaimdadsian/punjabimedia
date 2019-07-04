@@ -60,9 +60,9 @@
                                                 <dd>
                                                     @foreach ($actors as $actor)
                                                         @if ($loop->last)
-                                                            <a href="{{route('main.specified',['name'=>'actor','value'=>$actor->id])}}" title="{{$actor->name}}'s movies">{{$actor->name}}</a>
+                                                            <a href="{{route('main.specified',['name'=>'actor','value'=>$actor->name])}}" title="{{$actor->name}}'s movies">{{$actor->name}}</a>
                                                         @else
-                                                            <a href="{{route('main.specified',['name'=>'actor','value'=>$actor->id])}}" title="{{$actor->name}}'s movies">{{$actor->name}}</a>,
+                                                            <a href="{{route('main.specified',['name'=>'actor','value'=>$actor->name])}}" title="{{$actor->name}}'s movies">{{$actor->name}}</a>,
                                                         @endif
                                                     @endforeach
                                                 </dd>

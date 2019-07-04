@@ -23,8 +23,8 @@
                                 <div class="col-sm-4">
                                     <ul class="multi-column-dropdown">
                                         <li><a href="{{route('main.specified',['name'=>'actor','value'=>'Amanullah Khan'])}}">Amanullah Khan</a></li>
-                                        <li><a href="{{route('main.specified',['name'=>'actor','value'=>'Iftikhar Thakur'])}}">Khalid Abbas Dar</a></li>
-                                        <li><a href="{{route('main.specified',['name'=>'actor','value'=>'Khalid Abbas Dar'])}}">Iftikhar Thakur</a></li>
+                                        <li><a href="{{route('main.specified',['name'=>'actor','value'=>'Khalid Abbas Dar'])}}">Khalid Abbas Dar</a></li>
+                                        <li><a href="{{route('main.specified',['name'=>'actor','value'=>'Iftikhar Thakur'])}}">Iftikhar Thakur</a></li>
                                         <li><a href="{{route('main.specified',['name'=>'actor','value'=>'Naseem Vickey'])}}">Naseem Vickey</a></li>
                                         <li><a href="{{route('main.specified',['name'=>'actor','value'=>'Nasir Chinyoti'])}}">Nasir Chinyoti</a></li>
                                         <li><a href="{{route('main.specified',['name'=>'actor','value'=>'Nargis'])}}">Nargis</a></li>

@@ -49,6 +49,7 @@
                         <div class="clearfix"> </div>
                     </div>
                 </div>
+
                 <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
                     @foreach ($top_rated_videos_g as $video)
                         <div class="col-md-2 w3l-movie-gride-agile">

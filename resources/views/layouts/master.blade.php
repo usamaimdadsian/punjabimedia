@@ -76,6 +76,18 @@
     </script>
     <!-- start-smoth-scrolling -->
     @yield('css')
+    <style>
+      .w3l-movie-gride-agile
+      {
+        height: 333px;
+      }
+      .w3l-movie-gride-agile .w3l-movie-text
+      {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    </style>
 </head>
 <body>
     <script>
