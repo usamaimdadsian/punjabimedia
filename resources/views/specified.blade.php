@@ -75,7 +75,7 @@
                         <li><a href="#">5</a></li>
                         <li><a class="last" href="#">Next</a></li>
                     </ul> --}}
-                    {{ $videos->links() }}
+                    {{ $videos->appends(request()->path())->links() }}
                 </div>
 
             </div>
