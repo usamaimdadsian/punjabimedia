@@ -88,6 +88,23 @@
         text-overflow: ellipsis;
       }
     </style>
+    <!-- Default Statcounter code for Pakistanistagedramas.ml
+    http://pakistanistagedramas.ml -->
+    <script type="text/javascript">
+    var sc_project=12031468;
+    var sc_invisible=0;
+    var sc_security="7df7f999";
+    var scJsHost = "https://";
+    document.write("<sc"+"ript type='text/javascript' src='" +
+    scJsHost+
+    "statcounter.com/counter/counter.js'></"+"script>");
+    </script>
+    <noscript><div class="statcounter"><a title="Web Analytics"
+    href="https://statcounter.com/" target="_blank"><img
+    class="statcounter"
+    src="https://c.statcounter.com/12031468/0/7df7f999/0/"
+    alt="Web Analytics"></a></div></noscript>
+    <!-- End of Statcounter Code -->
 </head>
 <body>
     <script>
