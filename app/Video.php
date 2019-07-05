@@ -112,7 +112,7 @@ class Video extends Model
         $videos = collect($videos);
         $currentPageItems = $videos->slice(($current_page * $per_page) - $per_page, $per_page)->all();
         $videos = new LengthAwarePaginator($currentPageItems, count($videos), $per_page);
-        $videos->setPath($request->url());
+        $videos->setPath(request()->url());
         return $videos;
     }
 }
