@@ -133,7 +133,7 @@
                                 <div class="col-md-6">
                                     <input id="image_link" type="file" accept="image/*"
                                         class="form-control-file @error('image_link') is-invalid @enderror"
-                                        name="image_link" value="{{$video->image_link }}" required autocomplete="image_link"
+                                        name="image_link" value="{{$video->image_link }}"  autocomplete="image_link"
                                         autofocus>
 
                                     @error('image_link')
@@ -152,7 +152,7 @@
                                 <div class="col-md-6">
                                     <input id="video_cover" type="file" accept="image/*"
                                         class="form-control-file @error('video_cover') is-invalid @enderror"
-                                        name="video_cover" value="{{ $video->video_cover}}" required
+                                        name="video_cover" value="{{ $video->video_cover}}"
                                         autocomplete="video_cover" autofocus>
 
                                     @error('video_cover')

@@ -163,21 +163,27 @@ class VideoController extends Controller
             'quality' => 'required|max:5'
         ]);
         $page_link = preg_replace('/\s+/', '_', $request->input('name'));
-        $image_link = $this->imageAddress($request->file('image_link'), $request->hasFile('image_link'), 0);
-        $video_cover = $this->imageAddress($request->file('video_cover'), $request->hasFile('video_cover'), 1);
+
+        if($request->hasFile('image_link')){
+            $image_link = $this->imageAddress($request->file('image_link'), $request->hasFile('image_link'), 0);
+            $video->image_link = $image_link;
+        }
+        if($request->hasFile('video_cover'))
+        {
+            $video_cover = $this->imageAddress($request->file('video_cover'), $request->hasFile('video_cover'), 1);
+            $video->video_cover = $video_cover;
+        }
 
         $video->name = $request->input('name');
         $video->video_link = $request->input('video_link');
         $video->description = $request->input('description');
         $video->quality = $request->input('quality');
         $video->release_date = $request->input('release_date');
-        $video->image_link = $image_link;
-        $video->video_cover = $video_cover;
         $video->video_page_link = $page_link;
         $video->update();
         $actors = $request->input('actors');
         VideosActors::updateActors($video->id, $actors);
-        return redirect()->back()->withErrors('Your Entry is success fully entered.');
+        return redirect()->back()->withErrors('Video is successfully Updated.');
     }
 
     /**

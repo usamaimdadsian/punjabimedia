@@ -2,11 +2,11 @@
 <style>
     .container
     {
-        display: flex;
+        display: block;
     }
     .video-card
     {
-        display: flex;
+        display: inline-flex;
         width: 182px;
         height: 290px;
         margin: 15px;
