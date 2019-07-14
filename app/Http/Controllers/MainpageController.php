@@ -33,8 +33,8 @@ class MainpageController extends Controller
         }
         elseif($name == 'actor')
         {
-            $videos=Actor::where('name','LIKE','%'.$value.'%')->orWhere('name','sounds like',"%$value%")
-            ->first();
+            $s = implode("%", str_split($value));
+            $videos=Actor::where('name','LIKE','%'.$value.'%')->orWhere('name','sounds like',"%$value%")->orWhere('name','LIKE',"%$s%")->first();
             // dd($videos);
             if($videos !== null)
             {

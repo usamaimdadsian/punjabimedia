@@ -14,21 +14,14 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('mail/test', function () {
-
-    function checkedIt($id, $selected_actors)
-    {
-        foreach ($selected_actors as $actor) {
-            if ($actor->actor_id == $id) {
-                return true;
-            }
-        }
-        return false;
+    $search='My name is Usama Imdad';
+    $search=str_replace(' ','',$search);
+    $search=str_split($search);
+    $s="%";
+    foreach ($search as $sear) {
+        $s.=$sear."%";
     }
-    $selected_actors = DB::select('select * from videos_actors where video_id = ?', [1]);
-    // $selected_actors=App\VideosActors::where('video_id',1)->get();
-    // dd($selected_actors);
-    dd(checkedIt(1,$selected_actors));
-    // dd(date('Y', strtotime($date)));
+    dd($s);
 });
 
 Route::get('/', 'MainpageController@index')->name('main.index');

@@ -76,9 +76,10 @@ class Video extends Model
     {
         $actor_videos=array();
         $desired_videos=array();
+        $s=implode("%",str_split($search));
         $videos=Video::where('name','LIKE',"%$search%")->orWhere('description','LIKE',"%$search%")
-        ->orWhere('name','sounds like',"%$search%")->orWhere('description', 'sounds like', "%$search%")->get()->all();
-        $actors=Actor::where('name','LIKE',"%$search%")->orWhere('name','sounds like',"%$search%")->get();
+        ->orWhere('name','sounds like',"%$search%")->orWhere('description', 'sounds like', "%$search%")->orWhere('name','LIKE',"%$s%")->get()->all();
+        $actors=Actor::where('name','LIKE',"%$search%")->orWhere('name','sounds like',"%$search%")->orWhere('name', 'LIKE', "$s")->get();
         foreach ($actors as $actor) {
             $act_vids=$actor->videos;
             foreach ($act_vids as $vid) {
