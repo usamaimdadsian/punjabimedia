@@ -35,6 +35,7 @@ class SitemapController extends Controller
                 $years[] = date('Y', strtotime($date));
             }
         }
+        $years=array_unique($years);
         return response()->view('sitemap.years',compact('years'))->header('Content-Type', 'text/xml');
     }
 }
