@@ -128,9 +128,11 @@
                             if(data.length !== 0)
                             {
                                 data.forEach(function(ele){
+                                    year=new Date(ele.release_date);
+                                    year=year.getFullYear();
                                     url_img=APP_URL+ele.image_link;
                                     url_drama=APP_URL+"drama/"+ele.video_page_link+"/"+ele.id;
-                                    html+='<div class="item "><img class="thumb" src="'+url_img+'"><div class="info"><a class="name" href="'+url_drama+'">'+ele.name+'</a><div class="meta"><span class="span-info"><i class="quality">'+ele.quality+'</i></span><span class="span-info">Rating: <span class="imdb">'+ele.rating+'</span></span><span class="span-info"><span class="year">Release:</span> 2009</span></div></div></div>';
+                                    html+='<div class="item "><img class="thumb" src="'+url_img+'"><div class="info"><a class="name" href="'+url_drama+'">'+ele.name+'</a><div class="meta"><span class="span-info"><i class="quality">'+ele.quality+'</i></span><span class="span-info">Rating: <span class="imdb">'+ele.rating+'</span></span><span class="span-info"><span class="year">Release:</span>'+year+'</span></div></div></div>';
                                 });
                                 html+='<div class="more"><a class="view-all-btn">View all</a></div>';
                                 $('.suggestions').html(html);
