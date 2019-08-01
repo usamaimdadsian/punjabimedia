@@ -152,7 +152,7 @@
                                 <div class="col-md-6">
                                     <input id="video_cover" type="file" accept="image/*"
                                         class="form-control-file @error('video_cover') is-invalid @enderror"
-                                        name="video_cover" value="{{ old('video_cover') }}" required
+                                        name="video_cover" value="{{ old('video_cover') }}"
                                         autocomplete="video_cover" autofocus>
 
                                     @error('video_cover')

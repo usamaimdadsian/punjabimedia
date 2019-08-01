@@ -14,7 +14,7 @@ class MainpageController extends Controller
 {
     public function index()
     {
-        $videos_latest_banner = Video::videosWithRatings(Video::latest()->take(6)->get());
+        $videos_latest_banner = Video::videosWithRatings(Video::whereNotNull('video_cover')->latest()->take(6)->get());
         $videos_latest = Video:: videosWithRatings( Video::latest()->take(10)->get());
         //  Variables to use in general movie sections
         $latest_videos_g = Video::videosWithRatings( Video::latest()->take(12)->get());

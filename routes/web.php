@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\Welcome;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -14,14 +15,8 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('mail/test', function () {
-    $search='My name is Usama Imdad';
-    $search=str_replace(' ','',$search);
-    $search=str_split($search);
-    $s="%";
-    foreach ($search as $sear) {
-        $s.=$sear."%";
-    }
-    dd($s);
+    $user=Auth::user();
+    Mail::to($user)->send(new Welcome($user));
 });
 
 Route::get('/', 'MainpageController@index')->name('main.index');
