@@ -64,7 +64,7 @@ class VideoController extends Controller
         ]);
         $page_link=preg_replace('/\s+/', '_', $request->input('name'));
         $image_link = $this->imageAddress($request->file('image_link'), $request->hasFile('image_link'),0);
-        if($request->input('video_cover'))
+        if($request->hasFile('video_cover'))
         {
             $video_cover = $this->imageAddress($request->file('video_cover'),$request->hasFile('video_cover'), 1);
         }
@@ -76,7 +76,7 @@ class VideoController extends Controller
         $video->quality=$request->input('quality');
         $video->release_date=$request->input('release_date');
         $video->image_link=$image_link;
-        if($request->input('video_cover'))
+        if($request->hasFile('video_cover'))
         {
             $video->video_cover=$video_cover;
         }
