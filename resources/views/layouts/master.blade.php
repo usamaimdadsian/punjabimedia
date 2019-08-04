@@ -116,6 +116,15 @@
 
       gtag('config', 'UA-143368910-1');
     </script>
+    {{-- Google Adscene --}}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-5784479528577464",
+        enable_page_level_ads: true
+      });
+    </script>
+    {{-- End Google Adscene --}}
 </head>
 <body>
     <script>
