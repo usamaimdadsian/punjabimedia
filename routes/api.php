@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Route::
+Route::get('actors','ActorController@getActors');
+Route::get('titles','VideoController@getTitles');

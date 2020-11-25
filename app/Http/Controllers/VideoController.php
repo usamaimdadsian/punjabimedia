@@ -16,7 +16,7 @@ class VideoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['getTitles']);
     }
     /**
      * Display a listing of the resource.
@@ -209,5 +209,12 @@ class VideoController extends Controller
         DB::delete('DELETE FROM  videos_actors where video_id = ?', [$video->id]);
         DB::delete('DELETE FROM videos where id = ?', [$video->id]);
         return redirect()->route('video.index');
+    }
+
+    // API
+    public function getTitles()
+    {
+        $titles = Video::all()->pluck('name')->toArray();
+        return response()->json($titles,200);
     }
 }

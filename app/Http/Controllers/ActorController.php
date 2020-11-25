@@ -11,7 +11,7 @@ class ActorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['getActors']);
     }
     /**
      * Display a listing of the resource.
@@ -119,5 +119,13 @@ class ActorController extends Controller
         DB::delete('DELETE FROM  videos_actors where actor_id = ?', [$actor->id]);
         DB::delete('DELETE FROM actors where id = ?', [$actor->id]);
         return redirect()->route('actor.index')->with('message', 'Successful!');
+    }
+
+    // API's
+    // get all actors
+    public function getActors()
+    {
+        $actors = Actor::all()->pluck('name')->toArray();
+        return response()->json($actors,200);
     }
 }
