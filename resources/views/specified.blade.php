@@ -26,7 +26,7 @@
                             @foreach ($videos as $video)
                                 <div class="col-md-2 w3l-movie-gride-agile">
                                     <a href="{{route('main.single',['name'=>$video->video_page_link,'video'=>$video->id])}}" class="hvr-shutter-out-horizontal">
-                                        <img src="{{asset($video->image_link)}}" title="album-name" alt=" " />
+                                        <img style="width: 182px; height:259px;" src="{{asset($video->image_link)}}" title="{{$video->name}}" class="img-responsive" alt=" " />
                                         <div class="w3l-action-icon">
                                             <i class="fa fa-play-circle" aria-hidden="true"></i>
                                         </div>

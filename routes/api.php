@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,10 +12,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+Route::post('login','Auth\LoginController@apiLogin');
 
 // Route::
-Route::get('actors','ActorController@getActors');
-Route::get('titles','VideoController@getTitles');
+Route::middleware('auth:api')->group(function(){
+    Route::get('actors','ActorController@getActors');
+    Route::post('actor/store','ActorController@apiStore');
+
+    Route::get('titles','VideoController@getTitles');
+    Route::get('links','VideoController@getLinks');
+});

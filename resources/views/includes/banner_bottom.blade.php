@@ -6,7 +6,7 @@
                 @foreach ($videos_latest as $video)
                     <div class="item">
                         <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
-                            <a href="{{route('main.single',['name'=>$video->video_page_link,'video'=>$video->id])}}" class="hvr-shutter-out-horizontal"><img src="{{$video->image_link}}" title="album-name" class="img-responsive" alt=" " />
+                            <a href="{{route('main.single',['name'=>$video->video_page_link,'video'=>$video->id])}}" class="hvr-shutter-out-horizontal"><img src="{{$video->image_link}}" style="width: 182px; height:259px;" title="{{$video->name}}" class="img-responsive" alt=" " />
                                 <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
                             </a>
                             <div class="mid-1 agileits_w3layouts_mid_1_home">

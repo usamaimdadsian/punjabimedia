@@ -16,7 +16,7 @@ class VideoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['getTitles']);
+        $this->middleware('is_admin')->except([]);
     }
     /**
      * Display a listing of the resource.
@@ -25,9 +25,6 @@ class VideoController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
         $videos=Video::all();
         return view('video.index',compact('videos'));
     }
@@ -39,9 +36,6 @@ class VideoController extends Controller
      */
     public function create()
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
         $actors=Actor::all();
         return view('video.create',compact('actors'));
     }
@@ -54,9 +48,6 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message','Successful!');
-        }
         $this->validate($request, [
             'name' => 'required|max:300',
             'video_link' => 'required|max:500',
@@ -101,9 +92,6 @@ class VideoController extends Controller
 
     public function imageAddress($image, $image_presence, $which_img)
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
         if ($image_presence) {
             // get file name with the extension
             $file_name_ext = $image->getClientOriginalName();
@@ -131,9 +119,6 @@ class VideoController extends Controller
      */
     public function show(Video $video)
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
         //
     }
 
@@ -145,9 +130,6 @@ class VideoController extends Controller
      */
     public function edit(Video $video)
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
         $actors = Actor::all();
         $selected_actors=DB::select('select * from videos_actors where video_id = ?', [$video->id]);
         // dd($selected_actors);
@@ -163,9 +145,6 @@ class VideoController extends Controller
      */
     public function update(Request $request, Video $video)
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
         $this->validate($request, [
             'name' => 'required|max:300',
             'video_link' => 'required|max:500',
@@ -203,9 +182,6 @@ class VideoController extends Controller
      */
     public function destroy(Video $video)
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
         DB::delete('DELETE FROM  videos_actors where video_id = ?', [$video->id]);
         DB::delete('DELETE FROM videos where id = ?', [$video->id]);
         return redirect()->route('video.index');
@@ -216,5 +192,14 @@ class VideoController extends Controller
     {
         $titles = Video::all()->pluck('name')->toArray();
         return response()->json($titles,200);
+    }
+    public function getLinks()
+    {
+        $links = Video::all()->pluck('video_link')->toArray();
+        return response()->json($links,200);
+    }
+    public function apiStore(Request $request)
+    {
+        
     }
 }

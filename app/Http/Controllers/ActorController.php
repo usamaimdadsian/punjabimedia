@@ -11,7 +11,8 @@ class ActorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['getActors']);
+        $this->middleware('is_admin')->except([]);
+        // $this->middleware('auth')->except(['getActors']);
     }
     /**
      * Display a listing of the resource.
@@ -20,9 +21,6 @@ class ActorController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
         $actors=Actor::all();
         return view('actor.index',compact('actors'));
     }
@@ -34,9 +32,6 @@ class ActorController extends Controller
      */
     public function create()
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
         return view('actor.create');
     }
 
@@ -48,9 +43,6 @@ class ActorController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
         $this->validate($request, [
             'name' => 'required|max:50'
         ]);
@@ -68,9 +60,6 @@ class ActorController extends Controller
      */
     public function show(Actor $actor)
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
         //
     }
 
@@ -82,9 +71,6 @@ class ActorController extends Controller
      */
     public function edit(Actor $actor)
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
         return view('actor.edit',compact('actor'));
     }
 
@@ -97,10 +83,7 @@ class ActorController extends Controller
      */
     public function update(Request $request, Actor $actor)
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
-        $actor->name=$request->input('name');
+        $actor->name=$request->name;
         $actor->update();
         return redirect()->route('actor.index')->with('message','Actor Updated');
     }
@@ -113,9 +96,6 @@ class ActorController extends Controller
      */
     public function destroy(Actor $actor)
     {
-        if (Auth::user()->Authority == 'common') {
-            return redirect()->route('main.index')->with('message', 'Successful!');
-        }
         DB::delete('DELETE FROM  videos_actors where actor_id = ?', [$actor->id]);
         DB::delete('DELETE FROM actors where id = ?', [$actor->id]);
         return redirect()->route('actor.index')->with('message', 'Successful!');
@@ -127,5 +107,12 @@ class ActorController extends Controller
     {
         $actors = Actor::all()->pluck('name')->toArray();
         return response()->json($actors,200);
+    }
+    public function apiStore(Request $request)
+    {
+        foreach ($request->all() as $obj) {
+            Actor::create(["name" => $obj['name']]);
+        }
+        return response()->json(Actor::all(),200);
     }
 }

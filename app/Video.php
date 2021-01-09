@@ -9,6 +9,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class Video extends Model
 {
+    protected $fillable = ['name','video_link','description','quality','release_date','image_link','video_cover','video_page_link'];
+    
     public function actors()
     {
         return $this->belongsToMany('App\Actor', 'videos_actors', 'video_id', 'actor_id');
